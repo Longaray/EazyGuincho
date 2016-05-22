@@ -1,5 +1,22 @@
-<ion-view view-title="List">
-  <ion-content>
-    <h1>SO UMA SIMPLES LISTA</h1>
-  </ion-content>
-</ion-view>
+<!-- This ugly block is how you get transitions/activities done with ionic -->
+<div class="modal">
+  <div class="bar bar-header bar-dark">
+    <button class="button" ng-click="closeModal()">back</button>
+    <h1 class="title">Guinchos da Região</h1>
+  </div>
+  </br></br></br>
+<div class="row">
+  <div class="col">Name</div>
+  <div class="col">Tempo Aprox.</div>
+  <div class="col">Valor</div>
+</div>
+  <ion-list>
+    <ion-item ng-repeat="item in toDoListItems">
+      <div class="row">
+        <div class="col">{{item.name}}</div>
+        <div class="col">{{item.time}}</div>
+        <div class="col">{{item.value}}</div>
+      </div>
+    </ion-item>
+  </ion-list>
+</div>

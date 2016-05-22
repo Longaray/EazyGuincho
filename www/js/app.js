@@ -28,21 +28,20 @@ angular.module('starter', ['ionic'])
     .state('index', {
       url: '/index',
       templateUrl: 'index.html',
-      controller: 'IndexControl'
     })
-    /*.state('lists', {
-      url: '/list',
-      templateUrl: 'templates/list.html',
-      controller: 'ListCtrl'
-    })*/
-    .state('lists', {
-      url: '/list',
-      views: {
-          templateUrl: 'templates/list.html',
-          controller: 'ListCtrl'
+    /*
+    .state('list', {
+      url: "/list",
+      abstract: true,
+      controller: 'ListCtrl',
+      templateUrl: function() {
+        if (ionic.Platform.isAndroid()) {
+            return  "templates/list.html";
+        }
+        return "templates/list.html";
       }
-    })
-    $urlRouterProvider.otherwise('/tirabugs');
+    })*/
+    $urlRouterProvider.otherwise('/index');
 })
 
 .controller('IndexControl', function($scope, $state) {
@@ -53,9 +52,80 @@ angular.module('starter', ['ionic'])
         };
 })
 
-.controller('ListCtrl', function($scope, $state) {
-        $scope.getGuincho = function() {
-            alert('List Alert with ng-click')
-            //$state.go('lists');
-        };
+//TODO: Corrigir o template list.html para ter o mesmo valor
+.controller('ListCtrl', function($scope,$ionicModal) {
+	$scope.toDoListItems = [
+  {
+      placa: 'HTM 2175',
+      nome: 'Zé do Guincho',
+      cnh: '1111muitaroda',
+      cpf: '0888888888888-25',
+      tds: $scope.tds
+  }, {
+    name: 'Tony Reboque',
+    time: '40 minutos',
+    value: 'R$ 400',
+  },
+   {
+    name: 'Pedro Te Busca',
+    time: '30 minutos',
+    value: 'R$ 300',
+  }];
+  
+  $scope.tds = [
+    { text: "Carro", checked: true },
+    { text: "Caminhão", checked: false },
+    { text: "Moto", checked: false }
+  ];
+
+ //Pega a lista com os guinchos
+ $ionicModal.fromTemplateUrl('/templates/list.html', {
+      id: '1',
+      scope: $scope,
+      animation: 'slide-in-up'
+ }).then(function(modal) { $scope.modal1 = modal;}); 
+  
+ //Abre o cadastro de guinchos
+ $ionicModal.fromTemplateUrl('/templates/cadastro.html', {
+      id: '2',
+      scope: $scope,
+      animation: 'slide-in-up'
+ }).then(function(modal) { $scope.modal2 = modal;});
+ 
+ //Método de abrir os modais
+ $scope.openModal = function(index) {
+      if (index == 1) $scope.modal1.show();
+      else $scope.modal2.show();
+  };
+  
+ //Método de fechar os modais
+ $scope.closeModal = function() {
+   $scope.modal1.hide();
+   $scope.modal2.hide();
+ };
+ 
+ //Cleanup the modal when we're done with it!
+ $scope.$on('$destroy', function() {
+   $scope.modal1.remove();
+   $scope.modal2.remove();
+ });
+
+ //TODO: Achar uma maneira menos tosca
+ //TODO: checkbox not saving
+ //Adiciona Guincho na Lista
+ $scope.Save = function(data){
+    $scope.toDoListItems.push({
+      placa: data.placa,
+      nome: data.nome,
+      cnh: data.cnh,
+      cpf: data.cpf,
+      tds: data.tds
+    });
+    data.placa = '';
+    data.nome = '';
+    data.cnh = '';
+    data.cpf = '';
+    data.tds = $scope.tds;
+    $scope.closeModal();
+  };
 });
