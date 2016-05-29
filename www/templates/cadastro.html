@@ -7,7 +7,7 @@ e valor/hora ou valor/km, conforme tipo de serviço que irá prestar.
 -->
 <div class="modal">
   <div class="bar bar-header bar-dark">
-    <button class="button" ng-click="closeModal()">back</button>
+    <button class="button" ng-click="closeModal(2)">back</button>
     <h1 class="title">Cadastro de Guinchos</h1>
   </div>
   </br></br></br>
@@ -23,15 +23,16 @@ e valor/hora ou valor/km, conforme tipo de serviço que irá prestar.
     <ul class="list">
       <!-- TODO: Too ugly, add css -->
       <div class="item item-divider">Tipo de Serviço:</div>
-      <li class="item item-checkbox  checkbox-dark" ng-repeat="item in tds" ng-model="data.tds" ng-checked="item.checked">
+      <li class="item item-checkbox  checkbox-dark" ng-repeat="item in ServiceType" ng-checked="item.checked">
           <td>
             {{ item.text }}
             <label class="checkbox">
-              <input type="checkbox" ng-model="data.tds">
+              <input type="checkbox" >
             </label>
           </td>
           <td>
-            <input class="text-right" type="text" placeholder="Valor" ng-model="item.value" >
+            <!--<input class="text-right" type="text" placeholder="Valor" ng-model="item.km" >-->
+            <!--<input class="text-right" type="text" placeholder="Valor" ng-model="item.hour" >-->
           </td>
       </li>
     </ul>

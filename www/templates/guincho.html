@@ -1,0 +1,25 @@
+<!-- UC02
+O “guincheiro” entra no aplicativo EasyGuincho e clica no Link “Cadastro de guincho”,
+ele automaticamente será redirecionado para uma tela de cadastro
+onde ele irá informar placa do guincho, nome do motorista, cpf 
+e carteira de motorista, tipos de serviços que irá prestar, 
+e valor/hora ou valor/km, conforme tipo de serviço que irá prestar.
+-->
+<div class="modal">
+  <div class="bar bar-header bar-dark">
+    <button class="button" ng-click="closeModal(3)">back</button>
+    <h1 class="title">Informações do Guincho</h1>
+  </div>
+  </br></br></br>
+  <ion-item>
+    <div>
+      <ion-label>Placa: {{guincho.plate}}</ion-label>
+      <ion-label>Guincheiro: {{guincho.name}}</ion-label>
+      <ion-label>CPF: {{guincho.cpf}}</ion-label>
+      <ion-label>CNH: {{guincho.cnh}}</ion-label>
+      <ion-label>Valor: {{guincho.value}} R$</ion-label>
+      <a class="button button-full button-dark" type="submit" ng-click="callGuincho(guincho)">Chamar Guincho</a>
+    </div>
+    
+  </ion-item>
+</div>

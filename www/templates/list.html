@@ -1,7 +1,7 @@
 <!-- This ugly block is how you get transitions/activities done with ionic -->
 <div class="modal">
   <div class="bar bar-header bar-dark">
-    <button class="button" ng-click="closeModal()">back</button>
+    <button class="button" ng-click="closeModal(1)">back</button>
     <h1 class="title">Guinchos da Região</h1>
   </div>
   </br></br></br>
@@ -11,7 +11,7 @@
   <div class="col">Valor</div>
 </div>
   <ion-list>
-    <ion-item ng-repeat="item in toDoListItems">
+    <ion-item ng-repeat="item in listItems" ng-click="openModal(3, item)">
       <div class="row">
         <div class="col">{{item.name}}</div>
         <div class="col">{{item.time}}</div>
